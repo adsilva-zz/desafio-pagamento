@@ -2,6 +2,11 @@ package com.desafio.pagamento.entidade;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cartao_credito")
 public class CartaoCredito extends Cartao {
 
 	private String CVV;
