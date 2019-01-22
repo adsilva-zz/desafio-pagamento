@@ -3,30 +3,40 @@ package com.desafio.pagamento.entidade;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "cartao_credito")
 public class CartaoCredito extends Cartao {
 
-	private String CVV;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long idCartaoCredito;
+	private String cvv;
 
-	public CartaoCredito(String name, String numero, LocalDate dataValidade, String CVV) {
+	public CartaoCredito(String name, String numero, LocalDate dataValidade, String cvv) {
 		super(name, numero, dataValidade);
-		this.CVV = CVV;
+		this.cvv = cvv;
 	}
 
-	public String getCVV() {
-		return CVV;
+	public String getCvv() {
+		return cvv;
 	}
 
-	public void setCVV(String cVV) {
-		CVV = cVV;
+	public void setCvv(String cvv) {
+		this.cvv = cvv;
 	}
 
 	@Override
 	public String toString() {
-		return "CartaoCredito [CVV=" + CVV + "]";
+		return "CartaoCredito [CVV=" + cvv + "]";
+	}
+
+	public Long getIdCartaoCredito() {
+		return idCartaoCredito;
 	}
 
 }
