@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CLIENTE")
+@Table(name = "cliente")
 public class Cliente {
 
 	@Id
@@ -16,12 +16,12 @@ public class Cliente {
 	private Long idCliente;
 	@Column(length = 100)
 	private String razaoSocial;
-	private String CNPJ;
+	private String cnpj;
 
-	public Cliente(String razaoSocial, String cNPJ) {
+	public Cliente(String razaoSocial, String cnpj) {
 		super();
 		this.razaoSocial = razaoSocial;
-		CNPJ = cNPJ;
+		this.cnpj = cnpj;
 	}
 
 	public String getRazaoSocial() {
@@ -32,12 +32,12 @@ public class Cliente {
 		this.razaoSocial = razaoSocial;
 	}
 
-	public String getCNPJ() {
-		return CNPJ;
+	public String getCnpj() {
+		return this.cnpj;
 	}
 
-	public void setCNPJ(String cNPJ) {
-		CNPJ = cNPJ;
+	public void setcnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
 	public Long getIdCliente() {
@@ -46,7 +46,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [idCliente=" + idCliente + ", razaoSocial=" + razaoSocial + ", CNPJ=" + CNPJ + "]";
+		return "Cliente [idCliente=" + idCliente + ", razaoSocial=" + razaoSocial + ", CNPJ=" + cnpj + "]";
 	}
 
 }

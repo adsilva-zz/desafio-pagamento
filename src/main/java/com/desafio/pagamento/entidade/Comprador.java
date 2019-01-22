@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "COMPRADOR")
+@Table(name = "comprador")
 public class Comprador {
 
 	@Id
@@ -17,13 +17,13 @@ public class Comprador {
 	@Column(length = 50)
 	private String nome;
 	private String email;
-	private String CPF;
+	private String cpf;
 
-	public Comprador(String nome, String email, String cPF) {
+	public Comprador(String nome, String email, String cpf) {
 		super();
 		this.nome = nome;
 		this.email = email;
-		CPF = cPF;
+		this.cpf = cpf;
 	}
 
 	public String getNome() {
@@ -42,12 +42,12 @@ public class Comprador {
 		this.email = email;
 	}
 
-	public String getCPF() {
-		return CPF;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCPF(String cPF) {
-		CPF = cPF;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public Long getIdComprador() {
@@ -56,7 +56,7 @@ public class Comprador {
 
 	@Override
 	public String toString() {
-		return "Comprador [idComprador=" + idComprador + ", nome=" + nome + ", email=" + email + ", CPF=" + CPF + "]";
+		return "Comprador [idComprador=" + idComprador + ", nome=" + nome + ", email=" + email + ", CPF=" + cpf + "]";
 	}
 
 }
