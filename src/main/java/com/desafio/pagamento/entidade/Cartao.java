@@ -2,8 +2,20 @@ package com.desafio.pagamento.entidade;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Cartao {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long idCartao;
 	private String name;
 	private String numero;
 	private LocalDate dataValidade;
@@ -13,6 +25,10 @@ public abstract class Cartao {
 		this.name = name;
 		this.numero = numero;
 		this.dataValidade = dataValidade;
+	}
+
+	public Long getIdCartao() {
+		return idCartao;
 	}
 
 	public String getName() {
