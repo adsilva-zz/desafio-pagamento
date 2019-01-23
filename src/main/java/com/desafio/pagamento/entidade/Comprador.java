@@ -26,6 +26,10 @@ public class Comprador {
 		this.cpf = cpf;
 	}
 
+	public Comprador() {
+
+	}
+
 	public String getNome() {
 		return nome;
 	}
