@@ -2,6 +2,7 @@ package com.desafio.pagamento.entidade;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -9,6 +10,7 @@ import javax.persistence.Table;
 @Table(name = "cartao_credito")
 public class CartaoCredito extends Cartao {
 
+	@Column(length = 3)
 	private String cvv;
 
 	public CartaoCredito(String name, String numero, LocalDate dataValidade, String cvv) {

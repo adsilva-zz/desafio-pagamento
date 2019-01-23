@@ -2,17 +2,19 @@ package com.desafio.pagamento.dto;
 
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 public class ClienteDTO {
 
 	@NotEmpty
 	private String razaoSocial;
-	@org.hibernate.validator.constraints.br.CNPJ
-	private String CNPJ;
+	@CNPJ
+	private String cnpj;
 
-	public ClienteDTO(String razaoSocial, String CNPJ) {
+	public ClienteDTO(String razaoSocial, String cnpj) {
 		super();
 		this.razaoSocial = razaoSocial;
-		this.CNPJ = CNPJ;
+		this.cnpj = cnpj;
 	}
 
 	public String getRazaoSocial() {
@@ -23,17 +25,17 @@ public class ClienteDTO {
 		this.razaoSocial = razaoSocial;
 	}
 
-	public String getCNPJ() {
-		return CNPJ;
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setCNPJ(String CNPJ) {
-		this.CNPJ = CNPJ;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
 
 	@Override
 	public String toString() {
-		return "ClienteDTO [razaoSocial=" + razaoSocial + ", CNPJ=" + CNPJ + "]";
+		return "ClienteDTO [razaoSocial=" + razaoSocial + ", CNPJ=" + cnpj + "]";
 	}
 
 }
