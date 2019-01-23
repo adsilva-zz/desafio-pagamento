@@ -8,4 +8,5 @@ import com.desafio.pagamento.entidade.Cliente;
 @Repository
 public interface ClienteRepositorio extends JpaRepository<Cliente, Long> {
 
+	// metodos adicionais
 }
