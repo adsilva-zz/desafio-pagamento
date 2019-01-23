@@ -1,4 +1,4 @@
-package com.desafio.pagamento.convert;
+package com.desafio.pagamento.converte;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
