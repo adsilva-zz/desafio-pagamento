@@ -18,6 +18,9 @@ public class CartaoCredito extends Cartao {
 		this.cvv = cvv;
 	}
 
+	public CartaoCredito() {
+	}
+
 	public String getCvv() {
 		return cvv;
 	}

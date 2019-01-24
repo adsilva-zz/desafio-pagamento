@@ -27,6 +27,10 @@ public abstract class Cartao {
 		this.dataValidade = dataValidade;
 	}
 
+	public Cartao() {
+
+	}
+
 	public Long getIdCartao() {
 		return idCartao;
 	}
