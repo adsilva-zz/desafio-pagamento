@@ -1,5 +1,7 @@
 package com.desafio.pagamento.dto;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.lang.NonNull;
 
 import com.desafio.pagamento.entidade.Cartao;
@@ -9,15 +11,15 @@ import com.desafio.pagamento.entidade.FormaPagamento;
 
 public class PagamentoDTO {
 
-	@NonNull
+	@NotNull
 	private Double valor;
-	@NonNull
+	@NotNull
 	private FormaPagamento forma;
-	@NonNull
+	@NotNull
 	private Cartao cartao;
-	@NonNull
+	@NotNull
 	private Cliente cliente;
-	@NonNull
+	@NotNull
 	private Comprador comprador;
 
 	public PagamentoDTO(Double valor, FormaPagamento forma, Cartao cartao, Cliente cliente, Comprador comprador) {

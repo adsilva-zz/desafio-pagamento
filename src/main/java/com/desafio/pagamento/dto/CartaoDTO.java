@@ -3,6 +3,7 @@ package com.desafio.pagamento.dto;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.lang.NonNull;
 
@@ -12,7 +13,7 @@ public class CartaoDTO {
 	private String name;
 	@NotEmpty
 	private String numero;
-	@NonNull
+	@NotNull
 	private LocalDate dataValidade;
 	@NotEmpty
 	private String cvv;
