@@ -3,6 +3,8 @@ package com.desafio.pagamento.entidade;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +21,8 @@ public abstract class Cartao {
 	private String name;
 	private String numero;
 	private LocalDate dataValidade;
+	@Enumerated(EnumType.STRING)
+	private TipoBandeira tipoBandeira;
 
 	public Cartao(String name, String numero, LocalDate dataValidade) {
 		super();
@@ -57,6 +61,14 @@ public abstract class Cartao {
 
 	public void setDataValidade(LocalDate dataValidade) {
 		this.dataValidade = dataValidade;
+	}
+
+	public TipoBandeira getTipoBandeira() {
+		return tipoBandeira;
+	}
+
+	public void setTipoBandeira(TipoBandeira tipoBandeira) {
+		this.tipoBandeira = tipoBandeira;
 	}
 
 	@Override
