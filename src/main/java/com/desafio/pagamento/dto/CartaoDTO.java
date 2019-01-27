@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.lang.NonNull;
 
 public class CartaoDTO {
@@ -16,6 +17,7 @@ public class CartaoDTO {
 	@NotNull
 	private LocalDate dataValidade;
 	@NotEmpty
+	@Length(max = 3, min = 3)
 	private String cvv;
 
 	public CartaoDTO(String name, String numero, LocalDate dataValidade, String cvv) {
