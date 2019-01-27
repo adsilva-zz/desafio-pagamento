@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.desafio.pagamento.dto.PagamentoDTO;
 import com.desafio.pagamento.entidade.Pagamento;
-import com.desafio.pagamento.entidade.TipoBandeira;
 import com.desafio.pagamento.repositorio.PagamentoRepositorio;
 import com.desafio.pagamento.servico.PagamentoServico;
 
@@ -22,8 +21,9 @@ public class PagamentoServicoImpl implements PagamentoServico {
 	@Override
 	public Pagamento realizarPagamento(PagamentoDTO pagamentoDTO) {
 		Pagamento pag = conversionService.convert(pagamentoDTO, Pagamento.class);
-		
-//		validar cartao, identificar bandeira. Futuramente nãoduplicar comprador e cartao
+
+		// validar cartao, identificar bandeira. Futuramente nãoduplicar comprador e
+		// cartao
 		return pagamentoRepositorio.save(pag);
 	}
 
