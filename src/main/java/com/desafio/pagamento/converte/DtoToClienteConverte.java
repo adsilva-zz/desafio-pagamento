@@ -7,6 +7,7 @@ import org.springframework.util.ObjectUtils;
 
 import com.desafio.pagamento.dto.ClienteDTO;
 import com.desafio.pagamento.entidade.Cliente;
+import com.desafio.pagamento.exception.ClienteNaoEncontradoException;
 import com.desafio.pagamento.servico.ClienteServico;
 
 @Component
@@ -17,12 +18,11 @@ public class DtoToClienteConverte implements Converter<ClienteDTO, Cliente> {
 
 	@Override
 	public Cliente convert(ClienteDTO clienteDTO) {
-		Cliente c = clienteServico.buscarCliente(clienteDTO);
-		if (ObjectUtils.isEmpty(c)) {
-			// lançar exceção
+		Cliente cliente = clienteServico.buscarCliente(clienteDTO);
+		if (!ObjectUtils.isEmpty(cliente)) {
+			return cliente;
+		} else {
+			throw new ClienteNaoEncontradoException(clienteDTO.getIdCliente());
 		}
-		Cliente cliente = c;
-		return cliente;
 	}
-
 }
