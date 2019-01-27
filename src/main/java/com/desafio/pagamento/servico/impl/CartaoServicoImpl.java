@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.desafio.pagamento.entidade.CartaoCredito;
 import com.desafio.pagamento.entidade.TipoBandeira;
+import com.desafio.pagamento.exception.CartaoInvalidoException;
 import com.desafio.pagamento.servico.CartaoServico;
 
 @Service
@@ -16,16 +17,14 @@ public class CartaoServicoImpl implements CartaoServico {
 	@Override
 	public boolean validarCartao(CartaoCredito cartaoCredito) {
 
-		CartaoCredito cartao = cartaoCredito;
-
-		if (!validarNumeroCartao(cartao.getNumero())) {
-			// lançar excecao de cartão invalido
+		if (!validarNumeroCartao(cartaoCredito.getNumero())) {
+			throw new CartaoInvalidoException(cartaoCredito);
 		}
-		if (!validarDataValidade(cartao.getDataValidade())) {
-			// lancar exceção de cartao invalido
+		if (!validarDataValidade(cartaoCredito.getDataValidade())) {
+			throw new CartaoInvalidoException(cartaoCredito);
 		}
-		if (!validarCvvCartao(cartao.getCvv())) {
-			// lançar exceção de cartao
+		if (!validarCvvCartao(cartaoCredito.getCvv())) {
+			throw new CartaoInvalidoException(cartaoCredito);
 		}
 		return true;
 	}
