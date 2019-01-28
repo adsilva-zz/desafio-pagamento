@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
-
 public class CartaoDTO {
 
 	@NotEmpty
