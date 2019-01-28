@@ -2,6 +2,8 @@ package com.desafio.pagamento.dto;
 
 import com.desafio.pagamento.entidade.FormaPagamento;
 import com.desafio.pagamento.entidade.Status;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 public class RespostaPagamentoDTO {
 
@@ -9,6 +11,7 @@ public class RespostaPagamentoDTO {
 	private double valor;
 	private FormaPagamento forma;
 	private Status status;
+	@JsonInclude(Include.NON_NULL)
 	private Integer numeroBoleto;
 
 	public Long getIdPagamento() {
