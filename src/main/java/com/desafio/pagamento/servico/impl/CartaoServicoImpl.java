@@ -4,15 +4,20 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.desafio.pagamento.entidade.CartaoCredito;
 import com.desafio.pagamento.entidade.TipoBandeira;
 import com.desafio.pagamento.exception.CartaoInvalidoException;
+import com.desafio.pagamento.repositorio.CartaoRepositorio;
 import com.desafio.pagamento.servico.CartaoServico;
 
 @Service
 public class CartaoServicoImpl implements CartaoServico {
+
+	@Autowired
+	private CartaoRepositorio cartaoRepositorio;
 
 	@Override
 	public boolean validarCartao(CartaoCredito cartaoCredito) {
@@ -34,7 +39,7 @@ public class CartaoServicoImpl implements CartaoServico {
 		Integer numString;
 		int soma = 0;
 		if (numCartao.length() <= 15) {
-			for (int i = 0; i <= numCartao.length(); i++) {
+			for (int i = 0; i < numCartao.length(); i++) {
 				numString = Integer.parseInt(numCartao.substring(i, i + 1));
 				if (i % 2 == 0) {
 					soma += numString;
@@ -48,7 +53,7 @@ public class CartaoServicoImpl implements CartaoServico {
 			}
 		}
 		if (numCartao.length() >= 16) {
-			for (int i = 0; i <= numCartao.length(); i++) {
+			for (int i = 0; i < numCartao.length(); i++) {
 				numString = Integer.parseInt(numCartao.substring(i, i + 1));
 				if (i % 2 == 0) {
 					if (numString * 2 > 9) {
@@ -100,14 +105,20 @@ public class CartaoServicoImpl implements CartaoServico {
 			return TipoBandeira.HIPERCARD;
 		}
 
-		if ("4".equals(numCartao.substring(0))) {
+		if ("4".equals(numCartao.substring(0, 1))) {
 			return TipoBandeira.VISA;
 		}
 
-		if ("5".equals(numCartao.substring(0))) {
+		if ("5".equals(numCartao.substring(0, 1))) {
 			return TipoBandeira.MASTERCARD;
 		}
 
-		return null;
+		return TipoBandeira.DESCONHECIDO;
 	}
+
+	@Override
+	public CartaoCredito salvarCartao(CartaoCredito cartaoCredito) {
+		return cartaoRepositorio.save(cartaoCredito);
+	}
+
 }

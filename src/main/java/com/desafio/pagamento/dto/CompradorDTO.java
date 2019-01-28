@@ -21,6 +21,10 @@ public class CompradorDTO {
 		this.cpf = cpf;
 	}
 
+	public CompradorDTO() {
+
+	}
+
 	public String getNome() {
 		return nome;
 	}

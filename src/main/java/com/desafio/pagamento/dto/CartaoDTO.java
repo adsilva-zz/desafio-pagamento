@@ -6,7 +6,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.lang.NonNull;
 
 public class CartaoDTO {
 
@@ -26,6 +25,10 @@ public class CartaoDTO {
 		this.numero = numero;
 		this.dataValidade = dataValidade;
 		this.cvv = cvv;
+	}
+
+	public CartaoDTO() {
+
 	}
 
 	public String getName() {

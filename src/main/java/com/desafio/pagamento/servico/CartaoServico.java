@@ -14,6 +14,8 @@ public interface CartaoServico {
 	public boolean validarCvvCartao(String cvv);
 
 	public boolean validarDataValidade(LocalDate dataValidade);
-	
+
 	public TipoBandeira identificarBandeira(String numCartao);
+
+	public CartaoCredito salvarCartao(CartaoCredito cartaoCredito);
 }

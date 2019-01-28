@@ -17,6 +17,7 @@ public class Comprador {
 	@Column(length = 50)
 	private String nome;
 	private String email;
+	@Column(unique = true)
 	private String cpf;
 
 	public Comprador(String nome, String email, String cpf) {

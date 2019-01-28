@@ -24,6 +24,10 @@ public class Cliente {
 		this.cnpj = cnpj;
 	}
 
+	public Cliente() {
+
+	}
+
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}

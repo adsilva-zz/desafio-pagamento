@@ -16,7 +16,7 @@ public class ClienteServicoImpl implements ClienteServico {
 
 	@Override
 	public Cliente buscarCliente(ClienteDTO clienteDTO) {
-		return clienteRepositorio.findById(clienteDTO.getIdCliente()).get();
+		return clienteRepositorio.findById(clienteDTO.getIdCliente()).orElse(null);
 	}
 
 }

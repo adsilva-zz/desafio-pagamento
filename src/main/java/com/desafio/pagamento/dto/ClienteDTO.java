@@ -7,13 +7,17 @@ public class ClienteDTO {
 	@NotNull
 	private Long idCliente;
 
-	public Long getIdCliente() {
-		return idCliente;
+	public ClienteDTO() {
+
 	}
 
 	public ClienteDTO(Long idCliente) {
 		super();
 		this.idCliente = idCliente;
+	}
+
+	public Long getIdCliente() {
+		return idCliente;
 	}
 
 	@Override

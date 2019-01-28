@@ -18,4 +18,14 @@ public class CompradorServicoImpl implements CompradorServico {
 		return compradorRepositorio.findById(comprador.getIdComprador()).get();
 	}
 
+	@Override
+	public Comprador buscarCompradorCPF(String cpf) {
+		return compradorRepositorio.findByCpf(cpf);
+	}
+
+	@Override
+	public Comprador salvarComprador(Comprador comprador) {
+		return compradorRepositorio.save(comprador);
+	}
+
 }
