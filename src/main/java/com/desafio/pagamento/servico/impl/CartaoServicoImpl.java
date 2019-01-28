@@ -98,7 +98,7 @@ public class CartaoServicoImpl implements CartaoServico {
 		}
 
 		if ("34".equals(numCartao.substring(0, 2)) || "37".equals(numCartao.substring(0, 2))) {
-			return TipoBandeira.AMEX;
+			return TipoBandeira.AMERICAN_EXPRESS;
 		}
 
 		if ("38".equals(numCartao.substring(0, 2)) || "60".equals(numCartao.substring(0, 2))) {
