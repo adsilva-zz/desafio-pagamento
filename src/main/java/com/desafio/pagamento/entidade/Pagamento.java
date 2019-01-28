@@ -1,5 +1,7 @@
 package com.desafio.pagamento.entidade;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,11 +20,15 @@ public class Pagamento {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idPagamento;
 	private Double valor;
+	private LocalDate dataCadastro;
 	@Enumerated(EnumType.STRING)
 	private FormaPagamento forma;
 	@OneToOne
 	@JoinColumn(name = "idCartao")
 	private Cartao cartao;
+	@OneToOne
+	@JoinColumn(name = "idBoleto")
+	private Boleto boleto;
 	@OneToOne
 	@JoinColumn(name = "idCliente")
 	private Cliente cliente;
@@ -32,12 +38,14 @@ public class Pagamento {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 
-	public Pagamento(Double valor, FormaPagamento forma, Cartao cartao, Cliente cliente, Comprador comprador,
-			Status status) {
+	public Pagamento(Double valor, LocalDate dataCadastro, FormaPagamento forma, Cartao cartao, Boleto boleto,
+			Cliente cliente, Comprador comprador, Status status) {
 		super();
 		this.valor = valor;
+		this.dataCadastro = dataCadastro;
 		this.forma = forma;
 		this.cartao = cartao;
+		this.boleto = boleto;
 		this.cliente = cliente;
 		this.comprador = comprador;
 		this.status = status;
@@ -63,12 +71,28 @@ public class Pagamento {
 		this.forma = forma;
 	}
 
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
 	public Cartao getCartao() {
 		return cartao;
 	}
 
 	public void setCartao(Cartao cartao) {
 		this.cartao = cartao;
+	}
+
+	public Boleto getBoleto() {
+		return boleto;
+	}
+
+	public void setBoleto(Boleto boleto) {
+		this.boleto = boleto;
 	}
 
 	public Cliente getCliente() {
@@ -101,8 +125,9 @@ public class Pagamento {
 
 	@Override
 	public String toString() {
-		return "Pagamento [idPagamento=" + idPagamento + ", valor=" + valor + ", tipo=" + forma + ", cartao=" + cartao
-				+ "]";
+		return "Pagamento [idPagamento=" + idPagamento + ", valor=" + valor + ", dataCadastro=" + dataCadastro
+				+ ", forma=" + forma + ", cartao=" + cartao + ", boleto=" + boleto + ", cliente=" + cliente
+				+ ", comprador=" + comprador + ", status=" + status + "]";
 	}
 
 }
