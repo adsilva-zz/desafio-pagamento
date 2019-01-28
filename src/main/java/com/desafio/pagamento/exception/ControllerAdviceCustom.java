@@ -21,4 +21,10 @@ public class ControllerAdviceCustom {
 		Message<CartaoCredito> mensagem = new Message<>("Cartão de crédito inválido", null);
 		return new ResponseEntity<Message<CartaoCredito>>(mensagem, HttpStatus.BAD_REQUEST);
 	}
+
+	@ExceptionHandler(CartaoNuloException.class)
+	public ResponseEntity<Message<Void>> cartaoNuloException() {
+		Message<Void> mensagem = new Message<>("Informe os dados do cartão", null);
+		return new ResponseEntity<Message<Void>>(mensagem, HttpStatus.BAD_REQUEST);
+	}
 }

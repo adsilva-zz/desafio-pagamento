@@ -1,8 +1,12 @@
 package com.desafio.pagamento.exception;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class Message<T> {
 
 	private String mensagem;
+	@JsonInclude(Include.NON_NULL)
 	private T corpo;
 
 	public String getMensagem() {
