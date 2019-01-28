@@ -4,7 +4,7 @@ import com.desafio.pagamento.entidade.Boleto;
 
 public interface BoletoServico {
 
-	public Boleto salvarBoleto();
+	public Boleto salvarBoleto(Boleto boleto);
 
-	public Integer gerarNumeroBoleto();
+	public Boleto gerarBoleto();
 }

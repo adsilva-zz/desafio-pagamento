@@ -1,5 +1,8 @@
 package com.desafio.pagamento.servico.impl;
 
+import java.time.LocalDate;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +17,17 @@ public class BoletoServicoImpl implements BoletoServico {
 	private BoletoRepositorio boletoRepositorio;
 
 	@Override
-	public Boleto salvarBoleto() {
-		return boletoRepositorio.save(null);
+	public Boleto salvarBoleto(Boleto boleto) {
+		return boletoRepositorio.save(boleto);
 	}
 
 	@Override
-	public Integer gerarNumeroBoleto() {
-		return null;
+	public Boleto gerarBoleto() {
+		Boleto boleto = new Boleto();
+		Random gerador = new Random();
+		boleto.setNumeroBoleto(gerador.nextInt(101) * 100);
+		boleto.setDataVencimento(LocalDate.now().plusDays(5));
+		return boleto;
 	}
 
 }
