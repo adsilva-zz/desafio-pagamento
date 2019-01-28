@@ -7,6 +7,7 @@ import org.springframework.util.ObjectUtils;
 
 import com.desafio.pagamento.dto.RequisicaoPagamentoDTO;
 import com.desafio.pagamento.entidade.CartaoCredito;
+import com.desafio.pagamento.entidade.Cliente;
 import com.desafio.pagamento.entidade.Comprador;
 import com.desafio.pagamento.entidade.FormaPagamento;
 import com.desafio.pagamento.entidade.Pagamento;
@@ -30,17 +31,25 @@ public class PagamentoServicoImpl implements PagamentoServico {
 
 	@Autowired
 	private ConversionService conversionService;
+	
+	//private static Integer NUM_BOLETO = 0;
 
 	@Override
 	public Pagamento realizarPagamento(RequisicaoPagamentoDTO requisicaoPagamentoDTO) {
-		Pagamento pag = conversionService.convert(pagamentoDTO, Pagamento.class);
-		Comprador comprador = compradorServico.buscarCompradorCPF(pag.getComprador().getCpf());
+
+		Pagamento pag = conversionService.convert(requisicaoPagamentoDTO.getPagamento(), Pagamento.class);
+
+		// Converte cliente e atribui no pagamento
+		Cliente cliente = conversionService.convert(requisicaoPagamentoDTO.getCliente(), Cliente.class);
+		pag.setCliente(cliente);
 
 		// Verifica se existe o comprador
+		Comprador comprador = compradorServico.buscarCompradorCPF(requisicaoPagamentoDTO.getComprador().getCpf());
 		if (!ObjectUtils.isEmpty(comprador)) {
 			pag.setComprador(comprador);
 		} else {// salva o comprador, caso não existe
-			pag.setComprador(compradorServico.salvarComprador(pag.getComprador()));
+			Comprador compradorNovo = conversionService.convert(requisicaoPagamentoDTO.getComprador(), Comprador.class);
+			pag.setComprador(compradorServico.salvarComprador(compradorNovo));
 		}
 
 		// Verifica se a forma de pagamento é cartão de crédito
@@ -50,6 +59,8 @@ public class PagamentoServicoImpl implements PagamentoServico {
 			cartaoServico.validarCartao(cc);
 			cc.setTipoBandeira(cartaoServico.identificarBandeira(cc.getNumero()));
 			pag.setCartao(cartaoServico.salvarCartao(cc));
+		} else {
+			//boleto -> gero proximo numero boleto
 		}
 		pag.setStatus(Status.ENVIADO);
 		return pagamentoRepositorio.save(pag);

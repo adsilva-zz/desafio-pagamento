@@ -2,5 +2,5 @@ package com.desafio.pagamento.entidade;
 
 public enum TipoBandeira {
 
-	VISA, MASTERCARD, ELO, AMEX, HIPERCARD, DESCONHECIDO;
+	VISA, MASTERCARD, ELO, AMERICAN_EXPRESS, HIPERCARD, DESCONHECIDO;
 }

@@ -16,7 +16,6 @@ public class CartaoDTO {
 	@NotNull
 	private LocalDate dataValidade;
 	@NotEmpty
-	@Length(max = 3, min = 3)
 	private String cvv;
 
 	public CartaoDTO(String name, String numero, LocalDate dataValidade, String cvv) {

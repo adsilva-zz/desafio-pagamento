@@ -71,7 +71,7 @@ public class CartaoServicoImpl implements CartaoServico {
 
 	@Override
 	public boolean validarCvvCartao(String cvv) {
-		if (Integer.parseInt(cvv) < 1) {
+		if (Integer.parseInt(cvv) < 1 || cvv.length() != 3) {
 			return false;
 		}
 		return true;
@@ -92,7 +92,7 @@ public class CartaoServicoImpl implements CartaoServico {
 				"509042", "509052", "509043", "509064", "509040", "36297", "5067", "4576", "4011");
 
 		for (String num : listaElo) {
-			if (num.equals(numCartao.substring(0, num.length() + 1))) {
+			if (num.equals(numCartao.substring(0, num.length()))) {
 				return TipoBandeira.ELO;
 			}
 		}

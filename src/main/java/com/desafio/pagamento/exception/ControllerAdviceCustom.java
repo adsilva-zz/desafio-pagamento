@@ -18,7 +18,7 @@ public class ControllerAdviceCustom {
 
 	@ExceptionHandler(CartaoInvalidoException.class)
 	public ResponseEntity<Message<CartaoCredito>> cartaoInvalidoException(CartaoInvalidoException ex) {
-		Message<CartaoCredito> mensagem = new Message<>("Cartão de crédito inválido", ex.getCartaoCredito());
+		Message<CartaoCredito> mensagem = new Message<>("Cartão de crédito inválido", null);
 		return new ResponseEntity<Message<CartaoCredito>>(mensagem, HttpStatus.BAD_REQUEST);
 	}
 }
