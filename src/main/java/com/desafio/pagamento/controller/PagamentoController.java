@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.desafio.pagamento.dto.RequisicaoPagamentoDTO;
-import com.desafio.pagamento.entidade.Pagamento;
+import com.desafio.pagamento.dto.RespostaPagamentoDTO;
 import com.desafio.pagamento.servico.PagamentoServico;
 
 @RestController
@@ -22,9 +22,9 @@ public class PagamentoController {
 	private PagamentoServico pagamentoServico;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Pagamento> realizarPagamento(
+	public ResponseEntity<RespostaPagamentoDTO> realizarPagamento(
 			@Valid @RequestBody RequisicaoPagamentoDTO requisicaoPagamentoDTO) {
-		return new ResponseEntity<Pagamento>(pagamentoServico.realizarPagamento(requisicaoPagamentoDTO),
+		return new ResponseEntity<RespostaPagamentoDTO>(pagamentoServico.realizarPagamento(requisicaoPagamentoDTO),
 				HttpStatus.CREATED);
 	}
 

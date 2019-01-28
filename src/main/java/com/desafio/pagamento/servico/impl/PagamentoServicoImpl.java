@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import com.desafio.pagamento.dto.RequisicaoPagamentoDTO;
+import com.desafio.pagamento.dto.RespostaPagamentoDTO;
 import com.desafio.pagamento.entidade.Boleto;
 import com.desafio.pagamento.entidade.CartaoCredito;
 import com.desafio.pagamento.entidade.Cliente;
@@ -39,12 +40,11 @@ public class PagamentoServicoImpl implements PagamentoServico {
 	@Autowired
 	private ConversionService conversionService;
 
-	// private static Integer NUM_BOLETO = 0;
-
 	@Override
-	public Pagamento realizarPagamento(RequisicaoPagamentoDTO requisicaoPagamentoDTO) {
+	public RespostaPagamentoDTO realizarPagamento(RequisicaoPagamentoDTO requisicaoPagamentoDTO) {
 
 		Pagamento pag = conversionService.convert(requisicaoPagamentoDTO.getPagamento(), Pagamento.class);
+		RespostaPagamentoDTO respostaPagamentoDTO = new RespostaPagamentoDTO();
 
 		// Converte cliente e atribui no pagamento
 		Cliente cliente = conversionService.convert(requisicaoPagamentoDTO.getCliente(), Cliente.class);
@@ -73,7 +73,17 @@ public class PagamentoServicoImpl implements PagamentoServico {
 			pag.setStatus(Status.PROCESSANDO);
 		}
 		pag.setDataCadastro(LocalDate.now());
-		return pagamentoRepositorio.save(pag);
+
+		Pagamento pagamento = pagamentoRepositorio.save(pag);
+
+		respostaPagamentoDTO.setIdPagamento(pagamento.getIdPagamento());
+		respostaPagamentoDTO.setValor(pagamento.getValor());
+		respostaPagamentoDTO.setForma(pagamento.getForma());
+		respostaPagamentoDTO.setStatus(pagamento.getStatus());
+		if (FormaPagamento.BOLETO.equals(pagamento.getForma())) {
+			respostaPagamentoDTO.setNumeroBoleto(pagamento.getBoleto().getNumeroBoleto());
+		}
+		return respostaPagamentoDTO;
 	}
 
 }

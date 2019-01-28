@@ -1,10 +1,10 @@
 package com.desafio.pagamento.servico;
 
 import com.desafio.pagamento.dto.RequisicaoPagamentoDTO;
-import com.desafio.pagamento.entidade.Pagamento;
+import com.desafio.pagamento.dto.RespostaPagamentoDTO;
 
 public interface PagamentoServico {
 
-	public Pagamento realizarPagamento(RequisicaoPagamentoDTO requisicaoPagamentoDTO);
+	public RespostaPagamentoDTO realizarPagamento(RequisicaoPagamentoDTO requisicaoPagamentoDTO);
 
 }
