@@ -44,7 +44,6 @@ public class PagamentoServicoImpl implements PagamentoServico {
 	public RespostaPagamentoDTO realizarPagamento(RequisicaoPagamentoDTO requisicaoPagamentoDTO) {
 
 		Pagamento pag = conversionService.convert(requisicaoPagamentoDTO.getPagamento(), Pagamento.class);
-		RespostaPagamentoDTO respostaPagamentoDTO = new RespostaPagamentoDTO();
 
 		// Converte cliente e atribui no pagamento
 		Cliente cliente = conversionService.convert(requisicaoPagamentoDTO.getCliente(), Cliente.class);
@@ -76,6 +75,7 @@ public class PagamentoServicoImpl implements PagamentoServico {
 
 		Pagamento pagamento = pagamentoRepositorio.save(pag);
 
+		RespostaPagamentoDTO respostaPagamentoDTO = new RespostaPagamentoDTO();
 		respostaPagamentoDTO.setIdPagamento(pagamento.getIdPagamento());
 		respostaPagamentoDTO.setValor(pagamento.getValor());
 		respostaPagamentoDTO.setForma(pagamento.getForma());
@@ -84,6 +84,11 @@ public class PagamentoServicoImpl implements PagamentoServico {
 			respostaPagamentoDTO.setNumeroBoleto(pagamento.getBoleto().getNumeroBoleto());
 		}
 		return respostaPagamentoDTO;
+	}
+
+	@Override
+	public Pagamento buscarPagamento(Long idPagamento) {
+		return pagamentoRepositorio.findById(idPagamento).orElse(null);
 	}
 
 }
