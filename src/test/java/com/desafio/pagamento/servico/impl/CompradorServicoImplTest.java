@@ -47,6 +47,7 @@ public class CompradorServicoImplTest {
 		Comprador findByCpf = compradorRepositorio.findByCpf(comprador.getCpf());
 		Assert.assertEquals(comprador.getCpf(), findByCpf.getCpf());
 		Assert.assertNotNull(findByCpf);
+
 	}
 
 	@Test
