@@ -22,13 +22,13 @@ public class BoletoServicoImplTest {
 	Boleto boleto = new Boleto();
 
 	@Test
-	public void gerarBoletoComSucesso() {
+	public void validarGerarBoletoComSucesso() {
 		Boleto gerarBoleto = boletoServico.gerarBoleto();
 		Assert.assertNotNull(gerarBoleto);
 	}
 
 	@Test
-	public void salvarBoletoComSucesso() {
+	public void validarSalvarBoletoComSucesso() {
 		Boleto boleto = boletoServico.gerarBoleto();
 		Assert.assertEquals(boleto, boletoServico.salvarBoleto(boleto));
 	}
