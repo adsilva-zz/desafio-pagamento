@@ -2,7 +2,7 @@
 
 API de pagamento que realiza processamento de solicitaçoes de compra por boleto e cartão de crédito. 
 Para o processamento é necessário enviar os dados do cliente, comprador, forma de pagamento e o cartão de crédito quando a forma de pagamento é cartão de crédito.
-A API verifica se o cartão de crédito é válido, verifica se o Cliente e o Comprador já existe no sistema, caso já existam ela vincula os mesmos com o pagamento a ser processado. Quando a forma de pagamento é Boleto a API gera um boleto e retorna ela para quem solicitou o processamento do pagamento.
+A API verifica se o cartão de crédito é válido, verifica se o cliente e o comprador já existe no sistema, caso já existam ela vincula os mesmos com o pagamento a ser processado. Quando a forma de pagamento é boleto a API gera um boleto e retorna o boleto gerado.
 A API permite consultar os dados do pagamento enviado para processamento.
 
 ## Tecnologias Utilizadas
