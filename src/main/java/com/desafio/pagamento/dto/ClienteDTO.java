@@ -25,4 +25,5 @@ public class ClienteDTO {
 		return "ClienteDTO [idCliente=" + idCliente + "]";
 	}
 
+	
 }

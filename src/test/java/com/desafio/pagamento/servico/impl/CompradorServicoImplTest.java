@@ -2,6 +2,7 @@ package com.desafio.pagamento.servico.impl;
 
 import java.util.Optional;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,34 +27,42 @@ public class CompradorServicoImplTest {
 	@Autowired
 	private CompradorRepositorio compradorRepositorio;
 
-	Comprador comprador = new Comprador("Bruna", "brunadsilva@gmail.com", "24110174058");
 	Comprador compradorSalvo;
 
 	@Before
 	public void init() {
+		Comprador comprador = new Comprador("Bruna", "brunadsilva@gmail.com", "24110174058");
 		compradorSalvo = compradorServico.salvarComprador(comprador);
+	}
+
+	@After
+	public void deleteAll() {
+		compradorRepositorio.deleteAll();
 	}
 
 	@Test
 	public void validarSalvarCompradorComSucesso() {
 		Assert.assertNotNull(compradorSalvo);
 		Assert.assertNotNull(compradorSalvo.getIdComprador());
+
 		Optional<Comprador> findById = compradorRepositorio.findById(compradorSalvo.getIdComprador());
 		Assert.assertNotNull(findById);
 	}
 
 	@Test
 	public void validarBuscarCompradorCPFComSucesso() {
-		Comprador findByCpf = compradorRepositorio.findByCpf(comprador.getCpf());
-		Assert.assertEquals(comprador.getCpf(), findByCpf.getCpf());
+		Comprador findByCpf = compradorRepositorio.findByCpf(compradorSalvo.getCpf());
+
 		Assert.assertNotNull(findByCpf);
+		Assert.assertEquals(compradorSalvo.getCpf(), findByCpf.getCpf());
 
 	}
 
 	@Test
 	public void validarBuscarCompradorComSucesso() {
-		Comprador buscarComprador = compradorServico.buscarComprador(comprador);
-		Assert.assertEquals(compradorSalvo.getIdComprador(), buscarComprador.getIdComprador());
+		Comprador buscarComprador = compradorServico.buscarComprador(compradorSalvo);
+
 		Assert.assertNotNull(buscarComprador);
+		Assert.assertEquals(compradorSalvo.getIdComprador(), buscarComprador.getIdComprador());
 	}
 }

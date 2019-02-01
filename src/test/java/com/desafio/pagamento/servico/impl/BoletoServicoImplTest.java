@@ -19,17 +19,19 @@ public class BoletoServicoImplTest {
 	@Autowired
 	private BoletoServico boletoServico;
 
-	Boleto boleto = new Boleto();
-
 	@Test
 	public void validarGerarBoletoComSucesso() {
 		Boleto gerarBoleto = boletoServico.gerarBoleto();
 		Assert.assertNotNull(gerarBoleto);
+		Assert.assertNotNull(gerarBoleto.getNumeroBoleto());
 	}
 
 	@Test
 	public void validarSalvarBoletoComSucesso() {
 		Boleto boleto = boletoServico.gerarBoleto();
-		Assert.assertEquals(boleto, boletoServico.salvarBoleto(boleto));
+		Boleto boletoSalvo = boletoServico.salvarBoleto(boleto);
+
+		Assert.assertEquals(boleto.getDataVencimento(), boletoSalvo.getDataVencimento());
+		Assert.assertEquals(boleto.getNumeroBoleto(), boletoSalvo.getNumeroBoleto());
 	}
 }

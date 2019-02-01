@@ -3,9 +3,11 @@ package com.desafio.pagamento.servico.impl;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import com.desafio.pagamento.entidade.CartaoCredito;
 import com.desafio.pagamento.entidade.TipoBandeira;
@@ -71,7 +73,16 @@ public class CartaoServicoImpl implements CartaoServico {
 
 	@Override
 	public boolean validarCvvCartao(String cvv) {
-		if (Integer.parseInt(cvv) < 1 || cvv.length() != 3) {
+		if (Objects.isNull(cvv)) {
+			return false;
+		}
+
+		try {
+			cvv = cvv.trim();
+			if (Integer.parseInt(cvv) < 1 || cvv.length() != 3) {
+				return false;
+			}
+		} catch (NumberFormatException e) {
 			return false;
 		}
 		return true;
@@ -79,7 +90,7 @@ public class CartaoServicoImpl implements CartaoServico {
 
 	@Override
 	public boolean validarDataValidade(LocalDate dataValidade) {
-		if (LocalDate.now().isAfter(dataValidade)) {
+		if (Objects.isNull(dataValidade) || LocalDate.now().isAfter(dataValidade)) {
 			return false;
 		}
 		return true;
