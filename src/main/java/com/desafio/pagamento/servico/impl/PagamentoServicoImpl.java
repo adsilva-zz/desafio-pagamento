@@ -2,8 +2,10 @@ package com.desafio.pagamento.servico.impl;
 
 import java.time.LocalDate;
 
+import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -88,7 +90,35 @@ public class PagamentoServicoImpl implements PagamentoServico {
 
 	@Override
 	public Pagamento buscarPagamento(Long idPagamento) {
-		return pagamentoRepositorio.findById(idPagamento).orElse(null);
+		Pagamento pag = pagamentoRepositorio.findById(idPagamento).orElse(null);
+		if (ObjectUtils.isEmpty(pag)) {
+			return null;
+		}
+		String cpfNovo = this.esconderCPF(pag.getComprador().getCpf());
+		pag.getComprador().setCpf(cpfNovo);
+		return pag;
+	}
+
+	@Override
+	public String esconderCPF(String cpf) {
+		if (ObjectUtils.isEmpty(cpf)) {
+			return null;
+		}
+		String cpfNovo = "";
+		for (int x = 0; x < cpf.length() - 2; x++) {
+			cpfNovo += "*";
+		}
+		return cpfNovo + cpf.substring(cpf.length() - 2);
+	}
+
+	@Override
+	public boolean removerPagamento(Long idPagamento) {
+		Pagamento pag = pagamentoRepositorio.findById(idPagamento).orElse(null);
+		if (ObjectUtils.isEmpty(pag)) {
+			return false;
+		}
+		pagamentoRepositorio.delete(pag);
+		return true;
 	}
 
 }

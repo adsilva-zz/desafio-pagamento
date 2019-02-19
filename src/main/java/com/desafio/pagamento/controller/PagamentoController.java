@@ -40,4 +40,11 @@ public class PagamentoController {
 		return new ResponseEntity<Pagamento>(pagamento, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> removerPagamento(@PathVariable(value = "id") Long idPagamento) {
+		if (!pagamentoServico.removerPagamento(idPagamento)) {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
 }

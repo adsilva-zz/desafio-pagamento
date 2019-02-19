@@ -9,4 +9,8 @@ public interface PagamentoServico {
 	public RespostaPagamentoDTO realizarPagamento(RequisicaoPagamentoDTO requisicaoPagamentoDTO);
 
 	public Pagamento buscarPagamento(Long idPagamento);
+	
+	public String esconderCPF(String cpf);
+	
+	public boolean removerPagamento(Long idPagamento);
 }

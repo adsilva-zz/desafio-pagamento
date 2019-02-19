@@ -23,8 +23,6 @@ import com.desafio.pagamento.entidade.Cliente;
 import com.desafio.pagamento.entidade.Comprador;
 import com.desafio.pagamento.entidade.FormaPagamento;
 import com.desafio.pagamento.entidade.Pagamento;
-import com.desafio.pagamento.exception.CartaoNuloException;
-import com.desafio.pagamento.exception.ClienteNaoEncontradoException;
 import com.desafio.pagamento.repositorio.ClienteRepositorio;
 import com.desafio.pagamento.servico.PagamentoServico;
 
@@ -122,7 +120,7 @@ public class PagamentoServicoImplTest {
 		Assert.assertEquals(comprador1.getCpf(), comprador2.getCpf());
 	}
 
-//	@Test(expected = ClienteNaoEncontradoException.class)
+	// @Test(expected = ClienteNaoEncontradoException.class)
 	@Test(expected = ConversionFailedException.class)
 	public void validarRealizarPagamentoFalhaClienteInvalido() {
 		RequisicaoPagamentoDTO requisicaoPagamentoDTO = new RequisicaoPagamentoDTO();
@@ -137,7 +135,7 @@ public class PagamentoServicoImplTest {
 		pagamentoservico.realizarPagamento(requisicaoPagamentoDTO);
 	}
 
-//	@Test(expected = CartaoNuloException.class)
+	// @Test(expected = CartaoNuloException.class)
 	@Test(expected = ConversionFailedException.class)
 	public void validarRealizarPagamentoFalhaCartaoNuloException() {
 		RequisicaoPagamentoDTO requisicaoPagamentoDTO = new RequisicaoPagamentoDTO();
@@ -151,4 +149,15 @@ public class PagamentoServicoImplTest {
 		pagamentoservico.realizarPagamento(requisicaoPagamentoDTO);
 	}
 
+	@Test
+	public void esconderCPFComSucesso() {
+		String cpfAntigo = "76217645033";
+		String cpfNovo = pagamentoservico.esconderCPF(cpfAntigo);
+		Assert.assertEquals("*********33", cpfNovo);
+	}
+
+	@Test
+	public void esconderCPFNuloComFalha() {
+		Assert.assertNull(pagamentoservico.esconderCPF(null));
+	}
 }

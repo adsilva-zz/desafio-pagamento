@@ -13,7 +13,7 @@ public class DtoToCartaoConverte implements Converter<CartaoDTO, CartaoCredito> 
 	public CartaoCredito convert(CartaoDTO cartaoDTO) {
 		CartaoCredito cartao = new CartaoCredito();
 		cartao.setDataValidade(cartaoDTO.getDataValidade());
-		cartao.setName(cartaoDTO.getName());
+		cartao.setName(cartaoDTO.getNome());
 		cartao.setNumero(cartaoDTO.getNumero());
 		cartao.setCvv(cartaoDTO.getCvv());
 		return cartao;

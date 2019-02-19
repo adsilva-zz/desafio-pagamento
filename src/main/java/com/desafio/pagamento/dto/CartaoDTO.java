@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class CartaoDTO {
 
 	@NotEmpty
-	private String name;
+	private String nome;
 	@NotEmpty
 	private String numero;
 	@NotNull
@@ -16,9 +16,9 @@ public class CartaoDTO {
 	@NotEmpty
 	private String cvv;
 
-	public CartaoDTO(String name, String numero, LocalDate dataValidade, String cvv) {
+	public CartaoDTO(String nome, String numero, LocalDate dataValidade, String cvv) {
 		super();
-		this.name = name;
+		this.nome = nome;
 		this.numero = numero;
 		this.dataValidade = dataValidade;
 		this.cvv = cvv;
@@ -28,12 +28,12 @@ public class CartaoDTO {
 
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getNumero() {
@@ -62,7 +62,7 @@ public class CartaoDTO {
 
 	@Override
 	public String toString() {
-		return "CartaoDTO [name=" + name + ", numero=" + numero + ", dataValidade=" + dataValidade + ", cvv=" + cvv
+		return "CartaoDTO [nome=" + nome + ", numero=" + numero + ", dataValidade=" + dataValidade + ", cvv=" + cvv
 				+ "]";
 	}
 
