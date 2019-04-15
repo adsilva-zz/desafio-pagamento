@@ -1,0 +1,22 @@
+version: '3'
+services:
+  desafio-boot-pagamentos:
+    image: desafio-pagamentos
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+    - mysql-pagamentos-container
+    ports:
+    - 8087:8080
+    volumes:
+    - /data/desafio-pagamentos
+  mysql-pagamentos-container:
+    image: mysql:latest
+    environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=desafiopagamento
+    - MYSQL_USER=app_user
+    - MYSQL_PASSWORD=programas
+    volumes:
+    - /data/mysql
